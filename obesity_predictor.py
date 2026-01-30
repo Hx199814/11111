@@ -87,26 +87,6 @@ if st.button("开始预测"):
             advice = f"根据模型预测，该学生1年后的肥胖风险较低，非肥胖概率为 **{probability:.1f}%**，请继续保持良好习惯！"
         st.success(advice)
 
-        # ===================== 预测概率可视化 =====================
-        st.write(f"### 📈 预测概率分布")
-        prob_data = {'非肥胖': predicted_proba[0], '肥胖': predicted_proba[1]}
-        plt.figure(figsize=(10, 3))  # 设置图表大小
-        # 绘制水平条形图，自定义颜色
-        bars = plt.barh(['非肥胖', '肥胖'], [prob_data['非肥胖'], prob_data['肥胖']], color=['#4CAF50', '#F44336'])
-        # 图表样式设置
-        plt.title("1年后肥胖风险预测概率分布", fontsize=16, fontweight='bold')
-        plt.xlabel("概率值", fontsize=12, fontweight='bold')
-        plt.ylabel("风险类别", fontsize=12, fontweight='bold')
-        plt.xlim(0, 1)  # 概率轴范围0-1
-        # 隐藏顶部、右侧边框，让图表更简洁
-        plt.gca().spines['top'].set_visible(False)
-        plt.gca().spines['right'].set_visible(False)
-        # 为条形图添加概率数值标签
-        for i, v in enumerate([prob_data['非肥胖'], prob_data['肥胖']]):
-            plt.text(v + 0.01, i, f"{v:.2f}", va='center', fontsize=12, fontweight='bold')
-        # 在Streamlit中展示图表
-        st.pyplot(plt)
-
     except Exception as e:
         st.error(f"预测过程中出现错误: {str(e)}")
         st.info("请检查：1.模型文件是否为训练好的CatBoost模型；2.输入数据是否符合范围；3.特征顺序是否与模型训练时一致。")
