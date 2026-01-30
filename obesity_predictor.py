@@ -28,6 +28,10 @@ PSYCH_OPTIONS = {
 }
 # 每周体育课节数
 PEC_options = {1: '0节', 2: '1节', 3: '2节',4: '3节',5: '4节', 6: '5节及以上'}
+
+# 移动设备日均使用时间超过2小时
+EDDU_options = {0: '无', 1: '有'}
+
 # 吸烟饮酒史
 SACH_options = {0: '无', 1: '有'}
 
@@ -49,6 +53,7 @@ D2 = st.sidebar.selectbox("我不想吃东西:", options=list(PSYCH_OPTIONS.keys
 D17 = st.sidebar.selectbox("我曾经放声痛哭:", options=list(PSYCH_OPTIONS.keys()), format_func=lambda x: PSYCH_OPTIONS[x])
 DST = st.sidebar.selectbox("每日睡眠时长（小时）:", options=[6,7,8,9,10,11,12], format_func=lambda x: f"{x}小时")
 D1 = st.sidebar.selectbox("以前从不困扰我的事情现在让我烦恼:", options=list(PSYCH_OPTIONS.keys()), format_func=lambda x: PSYCH_OPTIONS[x])
+EDDU = st.sidebar.selectbox("移动设备日均使用时间超过2小时：", options=list(EDDU_options.keys()), format_func=lambda x: EDDU_options[x])
 SACH = st.sidebar.selectbox("是否有过吸烟饮酒史：", options=list(SACH_options.keys()), format_func=lambda x: SACH_options[x])
 D8 = st.sidebar.selectbox("我觉得未来有希望:", options=list(PSYCH_OPTIONS.keys()), format_func=lambda x: PSYCH_OPTIONS[x])
 D7 = st.sidebar.selectbox("我感到做什么事都很费力:", options=list(PSYCH_OPTIONS.keys()), format_func=lambda x: PSYCH_OPTIONS[x])
@@ -56,9 +61,9 @@ D18 = st.sidebar.selectbox("我感到忧愁:", options=list(PSYCH_OPTIONS.keys()
 
 # ===================== 特征数据处理与预测 =====================
 # 按模型训练特征顺序整理输入（务必与训练时一致！）
-feature_values = [Q7_all,Q6_all,AGE,GENDER, D16, D10, PEC,D12,D2,D17,DST,D1,SACH,D8,D7,D18]
+feature_values = [Q7_all,Q6_all,AGE,GENDER, D16, D10, PEC,D12,D2,D17,DST,D1,EDDU,SACH,D8,D7,D18]
 # 定义特征名（请替换为【模型训练时的实际特征名】，顺序与feature_values严格对应）
-feature_names = ['Q7_all', 'Q6_all', 'AGE', 'GENDER', 'D16', 'D10', 'PEC', 'D12', 'D2', 'D17', 'DST', 'D1', 'SACH', 'D8', 'D7', 'D18']
+feature_names = ['Q7_all', 'Q6_all', 'AGE', 'GENDER', 'D16', 'D10', 'PEC', 'D12', 'D2', 'D17', 'DST', 'D1','EDDU','SACH', 'D8', 'D7', 'D18']
 # 转换为DataFrame（模型预测更规范，避免数组格式问题）
 features = pd.DataFrame([feature_values], columns=feature_names)
 
