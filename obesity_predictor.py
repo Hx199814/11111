@@ -58,7 +58,7 @@ D18 = st.sidebar.selectbox("我感到忧愁:", options=list(PSYCH_OPTIONS.keys()
 # 按模型训练特征顺序整理输入（务必与训练时一致！）
 feature_values = [Q7_all,Q6_all,AGE,GENDER, D16, D10, PEC,D12,D2,D17,DST,D1,SACH,D8,D7,D18]
 # 定义特征名（请替换为【模型训练时的实际特征名】，顺序与feature_values严格对应）
-feature_names = ['体重(kg)', '身高(cm)', '年龄', '性别', 'D16', 'D10', '体育课节数', 'D12', 'D2', 'D17', '睡眠时长', 'D1', '吸烟饮酒史', 'D8', 'D7', 'D18']
+feature_names = ['Q7_all', 'Q6_all', 'AGE', 'GENDER', 'D16', 'D10', 'PEC', 'D12', 'D2', 'D17', 'DST', 'D1', 'SACH', 'D8', 'D7', 'D18']
 # 转换为DataFrame（模型预测更规范，避免数组格式问题）
 features = pd.DataFrame([feature_values], columns=feature_names)
 
